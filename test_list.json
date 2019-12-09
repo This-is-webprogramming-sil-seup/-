@@ -81,9 +81,25 @@
         "auto": "True",
         "applicantsInfo": [{
             "done":0,
-            "total":7,
+            "total":5,
             "list":[{
-
+                "done":[],
+                "notDone":[{
+                    "id":"ga",
+                    "name":"가"
+                },{
+                    "id":"na",
+                    "name":"나"
+                },{
+                    "id":"da",
+                    "name":"다"
+                },{
+                    "id":"ra",
+                    "name":"라"
+                },{
+                    "id":"ma",
+                    "name":"마"
+                }]
             }]
         }],
         "average": 0,
@@ -137,5 +153,28 @@
                 "wrongrate":50
             }
         ]
+    }
+]
+
+[
+    {
+        "name":"가",
+        "id":"ga"
+    },
+    {
+        "name":"나",
+        "id":"na"
+    },
+    {
+        "name":"다",
+        "id":"da"
+    },
+    {
+        "name":"라",
+        "id":"ra"
+    },
+    {
+        "name":"마",
+        "id":"ma"
     }
 ]
