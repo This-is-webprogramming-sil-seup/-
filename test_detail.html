@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<style>
+    table {
+        border-spacing: 0px;
+        width: 100%;
+        border: 1px solid #444444;
+        border-collapse: collapse;
+        border-style: none;
+        padding: 0px;
+        width: 300px;
+    }
+
+    div{
+        border-radius: 20px;
+        padding:20px;
+        text-align: left;
+        background-color: white;
+    }
+    th,
+    td {
+        border-spacing: 0px;
+        padding: 0px;
+        border-style: none;
+    }
+    h2{
+        color: #00b4ab;
+    }
+</style>
+
+
+<body bgcolor = #dadada>
+    <div>
+    <h2>상세 정보</h2>
+    <script>
+        var Request = function () {
+            this.getParameter = function (name) {
+                var rtnval = '';
+                var nowAddress = unescape(location.href);
+                var parameters = (nowAddress.slice(nowAddress.indexOf('?') + 1,
+                    nowAddress.length)).split('&');
+                for (var i = 0; i < parameters.length; i++) {
+                    var varName = parameters[i].split('=')[0];
+                    if (varName.toUpperCase() == name.toUpperCase()) {
+                        rtnval = parameters[i].split('=')[1];
+                        break;
+                    }
+                }
+                return rtnval;
+            }
+        }
+        var t = '[{"name":"test1", "madeby":"Hong", "date":"19.05.12", "made_date": "19.04.11", "time": "12", "info":"12/50", "avg": "92",'
+                    +'"student":[{"name" : "kk", "didit": "yes", "score": "92"}]'+'},'
+            + '{"name":"test2", "madeby":"Hong", "date":"19.04.12", "made_date": "19.02.01", "time": "11", "info":"23/50", "avg": "88",'
+                    +'"student":[{"name" : "kk", "didit": "no", "score":"0"}]'+'}]';
+        var request = new Request();
+        var id = request.getParameter('id');
+        var test_list = JSON.parse(t);
+        var i=0;
+        for(i=0;i<Number(test_list);i++){
+            if(test_list[i].name==id) break;
+        }
+        document.write("<table>");
+        document.write("<tr><th>시험명</th><th>" + test_list[i].name + "</th></tr>");
+        document.write("<tr><th>생성자명</th><th>" + test_list[i].madeby + "</th></tr>");
+        document.write("<tr><th>응시기간</th><th>" + test_list[i].made_date + "~" + test_list[i].date + "</th></tr>");
+        document.write("<tr><th>응시시간</th><th>" + test_list[i].time + "</th></tr>");
+        document.write("<tr><th>응시정보</th><th>" + test_list[i].time + "</th></tr>");
+        
+        var test_student = test_list[i].student;
+        var sum = 0;
+        var num = 0;
+        for(j=0;j<Number(test_student.length);j++){
+            if(test_student[j].didit=="yes"){
+                sum = sum + Number(test_student[j].score);
+                num = num + 1;
+            }
+        }
+        var avg = 0;
+        if(num!=0) avg = sum / num;
+        document.write("<tr><th>평균</th><th>" + avg + "</th></tr>");
+    </script>
+    </div>
+</body>
+
+</html>
